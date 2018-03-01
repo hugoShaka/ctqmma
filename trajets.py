@@ -23,16 +23,19 @@ class Trajet(object):
         return (abs(self.x-ptX)+abs(self.y-ptY))
     
     # tReachStart : arrivee au point de depart
-    # tWait : temps d'attente au depart (peut etre negatif si retard)
+    # tWait : temps d'attente au depart (pour la voiture), négatif si la voiture est en retard
     # tBonus : 
-    def getCostFrom(self,ptX,ptY,t):
+    def getCostFrom(self,ptX,ptY,t,B):
         tReachStart=t+self.getStartDistFrom(ptX,ptY);
         tWait=self.s-tReachStart
-        tBonus=self.f-self.distance-tReachStart
+        tBonus=self.distance
+        if tWait >= 0:
+            tBonus+=B
         tTotal=self.getStartDistFrom(ptX,ptY)+self.distance;
         if tWait > 0:
             tTotal+=tWait
-        return (tReachStart,tWait,tBonus,tTotal)
+        tReachEnd=t+tTotal
+        return (tReachStart,tWait,tBonus,tTotal,tReachEnd)
     
     def estFaisable(self,ptX,ptY,t):
         return (self.f-self.distance-self.getStartDistFrom(ptX,ptY) > t)
