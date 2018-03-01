@@ -31,6 +31,22 @@ def meilleur_trajet_naif(car, rides):
 
     return(best_trajet)
 
+def ratio(car, ride):
+    distance_totale = ride.getTimeToEnd(car.x, car.y, car.tps)
+    point = float(bonus + ride.distance)
+    ratio = point/distance
+
+def meilleur_trajet_score(car, rides):
+    best_ratio = 0
+    best_trajet = None
+    for ride in rides:
+        if ratio(car,ride) > best_ratio and ride.estFaisable(car.x, car.y, car.tps) and not ride.estReserve:
+            best_dist = ride.getStartDistFrom(car.x, car.y)
+            best_trajet = ride
+
+    return(best_trajet)
+
+
 for car in cars:
     count = 0
     cont = True
