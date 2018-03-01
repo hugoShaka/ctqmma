@@ -10,6 +10,7 @@ class Car(object):
         self.tps = 0
         self.id = _id
         self.trajets = []
+        self.isBusy = False
         
         
     def printCar(self):
