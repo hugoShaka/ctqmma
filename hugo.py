@@ -31,10 +31,18 @@ def meilleur_trajet_naif(car, rides):
 
     return(best_trajet)
 
+def got_bonus(ride, car):
+    return ride.s - ride.getStartDistFrom(car.x, car.y) == car.tps
+
 def ratio(car, ride):
     distance_totale = ride.getTimeToEnd(car.x, car.y, car.tps)
+    if got_bonus(ride, car):
+        bonus = int(B)
+    else:
+        bonus = 0
     point = float(bonus + ride.distance)
-    ratio = point/distance
+    ratio = point/distance_totale
+    return(ratio)
 
 def meilleur_trajet_score(car, rides):
     best_ratio = 0
@@ -53,7 +61,7 @@ for car in cars:
     while cont == True:
         count += 1
         print(count)
-        trajet = meilleur_trajet_naif(car, rides)
+        trajet = meilleur_trajet_score(car, rides)
         if trajet == None:
             cont = False
         else:
