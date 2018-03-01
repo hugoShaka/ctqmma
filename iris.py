@@ -30,61 +30,38 @@ def parse(fichier):
 
   return(R, C, F, N, B, T, rides, cars)
   
-  
-#class Car(object):
-#    def __init__(self,_id):
-#        """
-#        Constructeur de la classe Car
-#        position
-#        tps
-#        """
-#        self.x = 0
-#        self.y = 0
-#        self.tps = 0
-#        self.id = _id
-#        self.trajets = []
-#        
-#        
-#    def printCar(self):
-#        print("id = %d, pos = (%d,%d) , tps = %r, trajets = %s" % (self.id, self.x, self.y, self.tps, str(self.trajets)))
-#    
-#    def maj(new_pos):
-#        self.pos = new_pos
-#        self.tps +=1
-#        
-#    def maj2(new_pos,tps):
-#        self.pos = new_pos
-#        self.tps +=tps
-#    
-#    def new_trajet(trajet):
-#        self.trajets.append(trajet)
-        
-    
-#exampleTraj()
         
 #exampleTraj()
-def find_nearestCar(traj,cars):
+def find_nearestCar(traj,cars,B):
     dist = 1000000000000000
-    carChosen = 0
+    cpt = 0
     for ca in cars:
-        dist_ca = traj.getStartDistFrom(ca.x,ca.y)
-        if dist_ca<dist:
-            dist = dist_ca
-            carChosen = ca
-    return carChosen
+        tReachStart,tWait,tBonus,tTotal,tReachEnd = traj.getCostFrom(ca.x,ca.y, ca.tps,B)
+        if ca.tps+tTotal <traj.f:
+            dist_ca = traj.getStartDistFrom(ca.x,ca.y)
+            print(dist_ca)
+            if dist_ca<dist:
+                dist = dist_ca
+                carChosen = cpt
+        cpt +=1
+        print(carChosen)
+    return carChosen, tTotal
 
 def easyWay(R, C, F, N, B, T, rides, cars):
     tps = 0
     for traj in rides:
-        carChosen = find_nearestCar(traj,cars)
-        carChosen.new_trajet(traj)
-        carChosen.maj2=(traj.)
-        carChosen.printCar()            
+        car,tTotal = find_nearestCar(traj,cars,B)
+        print("ok")
+        cars[car].id
+        cars[car].new_trajet(traj)
+        cars[car].maj2=(traj.x,traj.y,tTotal)
+        #cars[car].printCar() 
 if __name__=="__main__":
-    file = "b_should_be_easy.in"
+    #file = "b_should_be_easy.in"
+    file = "a_example.in"
     print("opening file" + file)
     
     (R, C, F, N, B, T, rides, cars) = parse(file)
     
-    easyWay(R, C, F, N, B, T, rides, cars)
+    easyWay(int(R), int(C), int(F), int(N), int(B), int(T), rides, cars)
     
