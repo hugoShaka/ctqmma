@@ -15,9 +15,13 @@ class Car(object):
     def printCar(self):
         print("id = %d, pos = (%d,%d) , tps = %r, trajets = %s" % (self.id, self.x, self.y, self.tps, str(self.trajets)))
     
-    def maj(new_pos):
+    def maj(self, new_pos):
         self.pos = new_pos
         self.tps +=1
+
+    def maj2(self, new_pos, new_time):
+        self.pos = new_pos
+        self.tps = new_time
     
-    def new_trajet(trajet):
+    def new_trajet(self, trajet):
         self.trajets.append(trajet)

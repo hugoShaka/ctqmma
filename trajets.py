@@ -18,6 +18,15 @@ class Trajet(object):
     def getStartDistFrom(self,ptX,ptY):
         return (abs(self.a-ptX)+abs(self.b-ptY))
     
+    def getTimeToEnd(self, ptX, ptY, time_now):
+        time_pre_trajet = self.getStartDistFrom(ptX, ptY)
+        time_start = self.s
+        if time_pre_trajet + time_now < time_start:
+            time_begin = time_start
+        else:
+            time_begin = time_pre_trajet + time_now
+        return(time_begin + self.distance)
+    
     def getEndDistFrom(self,ptX,ptY):
         return (abs(self.x-ptX)+abs(self.y-ptY))
     
@@ -32,7 +41,7 @@ class Trajet(object):
     
     def estFaisable(self,ptX,ptY,t):
         return (self.f-self.distance-self.getStartDistFrom(ptX,ptY) > t)
-        
+    
 def exampleTraj():
     traj1=Trajet(1,2,3,4,5,2,7);
     traj1.printTraj()
