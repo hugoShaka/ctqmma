@@ -10,6 +10,7 @@ class Trajet(object):
         self.s=s
         self.f=f
         self.estReserve=False
+        self.estFait=False
         self.distance=abs(a-x)+abs(b-y)
         
     def printTraj(self):
