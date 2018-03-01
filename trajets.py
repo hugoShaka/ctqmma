@@ -28,7 +28,10 @@ class Trajet(object):
         tReachStart=t+self.getStartDistFrom(ptX,ptY);
         tWait=self.s-tReachStart
         tBonus=self.f-self.distance-tReachStart
-        return (tReachStart,tWait,tBonus)
+        tTotal=self.getStartDistFrom(ptX,ptY)+self.distance;
+        if tWait > 0:
+            tTotal+=tWait
+        return (tReachStart,tWait,tBonus,tTotal)
     
     def estFaisable(self,ptX,ptY,t):
         return (self.f-self.distance-self.getStartDistFrom(ptX,ptY) > t)
