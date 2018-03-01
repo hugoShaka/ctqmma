@@ -74,10 +74,11 @@ def find_nearestCar(traj,cars):
     return carChosen
 
 def easyWay(R, C, F, N, B, T, rides, cars):
+    tps = 0
     for traj in rides:
         carChosen = find_nearestCar(traj,cars)
         carChosen.new_trajet(traj)
-        #carChosen.maj2=()
+        carChosen.maj2=(traj.)
         carChosen.printCar()            
 if __name__=="__main__":
     file = "b_should_be_easy.in"
