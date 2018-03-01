@@ -23,7 +23,7 @@ class Trajet(object):
         return (abs(self.x-ptX)+abs(self.y-ptY))
     
     # tReachStart : arrivee au point de depart
-    # tWait : temps d'attente au depart (pour la voiture), négatif si la voiture est en retard
+    # tWait : temps d'attente au depart (pour la voiture), negatif si la voiture est en retard
     # tBonus : 
     def getCostFrom(self,ptX,ptY,t,B):
         tReachStart=t+self.getStartDistFrom(ptX,ptY);
