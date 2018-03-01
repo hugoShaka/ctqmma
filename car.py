@@ -10,6 +10,7 @@ class Car(object):
         self.tps = 0
         self.id = _id
         self.trajets = []
+        self.active = True
         
         
     def printCar(self):
@@ -25,3 +26,5 @@ class Car(object):
     
     def new_trajet(self, trajet):
         self.trajets.append(trajet)
+    def disactive(self):
+        self.active = False
