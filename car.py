@@ -22,3 +22,7 @@ class Car(object):
     
     def new_trajet(self,trajet):
         self.trajets.append(trajet)
+
+    def maj2(self,new_pos,tps):
+        self.pos = new_pos
+        self.tps += tps
